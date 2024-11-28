@@ -1,49 +1,63 @@
 import skfuzzy as fuzz
 from skfuzzy import control as ctrl
 import numpy as np
+import matplotlib.pyplot as plt
 
 print("Initialisation des systemes flous...")
 #SF2
 
 #Entrees
 #appreciation des professeurs
-x_appreciation_des_professseurs = np.arange(-2, 3.5, 0.5)
+x_appreciation_des_professseurs = np.arange(0, 1.25, 0.25)
 
-appreciation_des_professseurs_TN = fuzz.trapmf(x_appreciation_des_professseurs, [-2, -2, -1, -0.5])
-appreciation_des_professseurs_N = fuzz.trapmf(x_appreciation_des_professseurs, [-1, -0.5, 0, 0.5])
-appreciation_des_professseurs_NTR = fuzz.trapmf(x_appreciation_des_professseurs, [0, 0.5, 1, 1.5])
-appreciation_des_professseurs_P = fuzz.trapmf(x_appreciation_des_professseurs, [1, 1.5, 2, 2.5])
-appreciation_des_professseurs_TP = fuzz.trapmf(x_appreciation_des_professseurs, [2, 2.5, 3, 3])
 
+appreciation_des_professseurs_TN = fuzz.trimf(x_appreciation_des_professseurs, [0, 0 ,0.25])
+appreciation_des_professseurs_N = fuzz.trimf(x_appreciation_des_professseurs, [0, 0.25,0.5])
+appreciation_des_professseurs_NTR = fuzz.trimf(x_appreciation_des_professseurs, [0.25, 0.5, 0.75])
+appreciation_des_professseurs_P = fuzz.trimf(x_appreciation_des_professseurs, [0.5, 0.75, 1])
+appreciation_des_professseurs_TP = fuzz.trimf(x_appreciation_des_professseurs, [0.75, 1,1])
+#afficher les fonctions d'appartenance
+fig, ax = plt.subplots()
+ax.plot(x_appreciation_des_professseurs, appreciation_des_professseurs_TN, 'b', linewidth=1.5, label='TN')
+ax.plot(x_appreciation_des_professseurs, appreciation_des_professseurs_N, 'g', linewidth=1.5, label='N')
+ax.plot(x_appreciation_des_professseurs, appreciation_des_professseurs_NTR, 'r', linewidth=1.5, label='NTR')
+ax.plot(x_appreciation_des_professseurs, appreciation_des_professseurs_P, 'y', linewidth=1.5, label='P')
+ax.plot(x_appreciation_des_professseurs, appreciation_des_professseurs_TP, 'm', linewidth=1.5, label='TP')
+
+ax.set_title('Appreciation des professeurs')
+ax.legend()
+plt.show()
 #Potentiel Academique Perçu
-x_potentiel_academique_perçu = np.arange(-2, 4, 1)
+x_potentiel_academique_perçu = np.arange(0, 1.5, 0.5)
 
-potentiel_academique_perçu_FAIBLE = fuzz.trapmf(x_potentiel_academique_perçu, [-2, -2, -1, 0])
-potentiel_academique_perçu_MOYEN = fuzz.trapmf(x_potentiel_academique_perçu, [-1, 0, 1, 2])
-potentiel_academique_perçu_FORT = fuzz.trapmf(x_potentiel_academique_perçu, [1, 2, 3, 3])
+potentiel_academique_perçu_FAIBLE = fuzz.trimf(x_potentiel_academique_perçu, [0, 0, 0.5])
+potentiel_academique_perçu_MOYEN = fuzz.trimf(x_potentiel_academique_perçu, [0, 0.5, 1])
+potentiel_academique_perçu_FORT = fuzz.trimf(x_potentiel_academique_perçu, [0.5, 1, 1])
 
 #Activite Extrascolaire
 
-x_activite_extrascolaire = np.arange(0, 5, 0.5)
+x_activite_extrascolaire = np.arange(0, 1.25, 0.25)
 
-activite_extrascolaire_I = fuzz.trapmf(x_activite_extrascolaire, [0, 0, 0, 0])
-activite_extrascolaire_P = fuzz.trapmf(x_activite_extrascolaire, [0, 0.5, 1, 1.5])
-activite_extrascolaire_M = fuzz.trapmf(x_activite_extrascolaire, [1, 1.5, 2, 2.5])
-activite_extrascolaire_N = fuzz.trapmf(x_activite_extrascolaire, [2, 2.5, 3, 3.5])
-activite_extrascolaire_TN = fuzz.trapmf(x_activite_extrascolaire, [3, 3.5, 4.5, 4.5])
+activite_extrascolaire_I = fuzz.trimf(x_activite_extrascolaire, [0, 0 ,0.25])
+activite_extrascolaire_P = fuzz.trimf(x_activite_extrascolaire, [0,0.25,0.5])
+activite_extrascolaire_M = fuzz.trimf(x_activite_extrascolaire,  [0.25, 0.5, 0.75])
+activite_extrascolaire_N = fuzz.trimf(x_activite_extrascolaire, [0.5, 0.75, 1])
+activite_extrascolaire_TN = fuzz.trimf(x_activite_extrascolaire,  [0.75, 1,1])
 
 #Sortie
 #Engagement
-x_engagement = np.arange(0, 5.25, 0.25)
+x_engagement = np.arange(0, 1.25, 0.25)
 
-engagement_TF = fuzz.trapmf(x_engagement, [0, 0, 0.25, 0.5])
-engagement_F = fuzz.trapmf(x_engagement, [0.25, 0.5, 1, 1.5])
-engagement_M = fuzz.trapmf(x_engagement, [1, 1.5, 2, 2.5])
-engagement_B = fuzz.trapmf(x_engagement, [2, 2.5, 3, 3.5])
-engagement_E = fuzz.trapmf(x_engagement, [3, 3.5, 5, 5])
+engagement_TF = fuzz.trimf(x_engagement, [0, 0, 0.25])
+engagement_F = fuzz.trimf(x_engagement, [0, 0.25, 0.5])
+engagement_M = fuzz.trimf(x_engagement, [0.25, 0.5, 0.75])
+engagement_B = fuzz.trimf(x_engagement, [0.5, 0.75, 1])
+engagement_E = fuzz.trimf(x_engagement, [0.75, 1, 1])
 
 #Regles
 tab_engagement = [
+    #appreciation des professeurs
+    # "TN"  "N"   "NTR"  "P"   "TP"
     # Potentiel académique FAIBLE
     [
         ['TF', 'F', 'F', 'M', 'M'],  # Activité extrascolaire 'I'
@@ -138,36 +152,38 @@ engagement_sim = ctrl.ControlSystemSimulation(engagement_ctrl)
 
 #Entrees
 #motivation percue
-x_motivation_percue = np.arange(0, 10, 1)
+x_motivation_percue = np.arange(0, 1.25, 0.25)
 
-motivation_percue_TI= fuzz.trapmf(x_motivation_percue, [0, 0, 1, 2])
-motivation_percue_I= fuzz.trapmf(x_motivation_percue, [1, 2, 3, 4])
-motivation_percue_M= fuzz.trapmf(x_motivation_percue, [3, 4, 5, 6])
-motivation_percue_B= fuzz.trapmf(x_motivation_percue, [5, 6, 7, 8])
-motivation_percue_TB= fuzz.trapmf(x_motivation_percue, [7, 8, 9, 9])
+motivation_percue_TI= fuzz.trimf(x_motivation_percue, [0, 0, 0.25])
+motivation_percue_I= fuzz.trimf(x_motivation_percue, [0, 0.25, 0.5])
+motivation_percue_M= fuzz.trimf(x_motivation_percue, [0.25, 0.5, 0.75])
+motivation_percue_B= fuzz.trimf(x_motivation_percue, [0.5, 0.75, 1])
+motivation_percue_TB= fuzz.trimf(x_motivation_percue, [0.75, 1, 1])
 
 #qualité lettre de motivation
-x_qualite_lettre_de_motivation = np.arange(0, 10, 1)
+x_qualite_lettre_de_motivation = np.arange(0, 1.25, 0.25)
 
-qualite_lettre_de_motivation_TI= fuzz.trapmf(x_qualite_lettre_de_motivation, [0, 0, 1, 2])
-qualite_lettre_de_motivation_I= fuzz.trapmf(x_qualite_lettre_de_motivation, [1, 2, 3, 4])
-qualite_lettre_de_motivation_M= fuzz.trapmf(x_qualite_lettre_de_motivation, [3, 4, 5, 6])
-qualite_lettre_de_motivation_B= fuzz.trapmf(x_qualite_lettre_de_motivation, [5, 6, 7, 8])
-qualite_lettre_de_motivation_TB= fuzz.trapmf(x_qualite_lettre_de_motivation, [7, 8, 9, 9])
+qualite_lettre_de_motivation_TI= fuzz.trimf(x_qualite_lettre_de_motivation, [0, 0, 0.25])
+qualite_lettre_de_motivation_I= fuzz.trimf(x_qualite_lettre_de_motivation, [0, 0.25, 0.5])
+qualite_lettre_de_motivation_M= fuzz.trimf(x_qualite_lettre_de_motivation, [0.25, 0.5, 0.75])
+qualite_lettre_de_motivation_B= fuzz.trimf(x_qualite_lettre_de_motivation, [0.5, 0.75, 1])
+qualite_lettre_de_motivation_TB= fuzz.trimf(x_qualite_lettre_de_motivation, [0.75, 1, 1])
 
 #Sortie
 #Motivation
-x_motivation = np.arange(0, 15.5, 0.5)
+x_motivation = np.arange(0, 1.25, 0.25)
 
-motivation_TF = fuzz.trapmf(x_motivation, [0, 0, 2.5, 5])
-motivation_F = fuzz.trapmf(x_motivation, [2.5, 5, 5, 7.5])
-motivation_M = fuzz.trapmf(x_motivation, [5, 7.5, 7.5, 10])
-motivation_B = fuzz.trapmf(x_motivation, [7.5, 10, 12.5, 15])
-motivation_TB = fuzz.trapmf(x_motivation, [10, 12.5, 15, 15])
+motivation_TF = fuzz.trimf(x_motivation, [0, 0, 0.25])
+motivation_F = fuzz.trimf(x_motivation, [0, 0.25, 0.5])
+motivation_M = fuzz.trimf(x_motivation, [0.25, 0.5, 0.75])
+motivation_B = fuzz.trimf(x_motivation, [0.5, 0.75, 1])
+motivation_TB = fuzz.trimf(x_motivation, [0.75, 1, 1])
 
 
 #Regles
 tab_motivation = [
+    # Motivation percue
+    # "TI"  "I"   "M"  "B"   "TB"
     ['TF', 'TF', 'TF', 'TF', 'F'],  # Qualité lettre de motivation 'TI'
     ['TF', 'TF', 'TF', 'F', 'M'],   # Qualité lettre de motivation 'I'
     ['TF', 'TF', 'F', 'M', 'B'],    # Qualité lettre de motivation 'M'
@@ -198,8 +214,8 @@ motivation['TB'] = motivation_TB
 
 liste_regles = []
 
-for x, motivation_label in enumerate(['TI', 'I', 'M', 'B', 'TB']):
-    for y, qualite_lettre_de_motivation_label in enumerate(['TI', 'I', 'M', 'B', 'TB']):
+for x, qualite_lettre_de_motivation_label in enumerate(['TI', 'I', 'M', 'B', 'TB']):
+    for y,motivation_label  in enumerate(['TI', 'I', 'M', 'B', 'TB']):
         # Définir la motivation cible
         motivation_target = tab_motivation[x][y]
         
@@ -228,39 +244,51 @@ motivation_sim = ctrl.ControlSystemSimulation(motivation_ctrl)
 #Résultat scolaire
 x_resultat_scolaire = np.arange(0, 21, 1)
 
-resultat_scolaire_TI = fuzz.trapmf(x_resultat_scolaire, [0, 0, 4, 5])   
-resultat_scolaire_I = fuzz.trapmf(x_resultat_scolaire, [4, 5, 8, 10])
-resultat_scolaire_M = fuzz.trapmf(x_resultat_scolaire, [8, 10, 12, 14])
-resultat_scolaire_B = fuzz.trapmf(x_resultat_scolaire, [12, 14, 16, 18])
-resultat_scolaire_TB = fuzz.trapmf(x_resultat_scolaire, [16, 18, 20, 20])
+resultat_scolaire_TI = fuzz.trimf(x_resultat_scolaire, [0, 0, 5])   
+resultat_scolaire_I = fuzz.trimf(x_resultat_scolaire, [0, 5, 10])
+resultat_scolaire_M = fuzz.trimf(x_resultat_scolaire, [5, 10, 15])
+resultat_scolaire_B = fuzz.trimf(x_resultat_scolaire, [10, 15, 18])
+resultat_scolaire_TB = fuzz.trapmf(x_resultat_scolaire, [15, 18, 20, 20])
+#afficher les fonctions d'appartenance
+# fig, ax = plt.subplots()
+# ax.plot(x_resultat_scolaire, resultat_scolaire_TI, 'b', linewidth=1.5, label='TI')
+# ax.plot(x_resultat_scolaire, resultat_scolaire_I, 'g', linewidth=1.5, label='I')
+# ax.plot(x_resultat_scolaire, resultat_scolaire_M, 'r', linewidth=1.5, label='M')
+# ax.plot(x_resultat_scolaire, resultat_scolaire_B, 'y', linewidth=1.5, label='B')
+
+# ax.plot(x_resultat_scolaire, resultat_scolaire_TB, 'm', linewidth=1.5, label='TB')
+
+# ax.set_title('Resultat scolaire')
+# ax.legend()
+# plt.show()
 
 #Niveau scientifique
 x_niveau_scientifique = np.arange(0, 21, 1)
 
-niveau_scientifique_TI = fuzz.trapmf(x_niveau_scientifique, [0, 0, 4, 5])
-niveau_scientifique_I = fuzz.trapmf(x_niveau_scientifique, [4, 5, 8, 10])
-niveau_scientifique_M = fuzz.trapmf(x_niveau_scientifique, [8, 10, 12, 14])
-niveau_scientifique_B = fuzz.trapmf(x_niveau_scientifique, [12, 14, 16, 18])
-niveau_scientifique_TB = fuzz.trapmf(x_niveau_scientifique, [16, 18, 20, 20])
+niveau_scientifique_TI = fuzz.trimf(x_niveau_scientifique, [0, 0, 5])
+niveau_scientifique_I = fuzz.trimf(x_niveau_scientifique, [0, 5, 10])
+niveau_scientifique_M = fuzz.trimf(x_niveau_scientifique, [5, 10, 15])
+niveau_scientifique_B = fuzz.trimf(x_niveau_scientifique, [10, 15, 18])
+niveau_scientifique_TB = fuzz.trapmf(x_niveau_scientifique, [15, 18, 20, 20])
 
 #Niveau litteraire
 x_niveau_litteraire = np.arange(0, 21, 1)
 
-niveau_litteraire_TI = fuzz.trapmf(x_niveau_litteraire, [0, 0, 4, 5])
-niveau_litteraire_I = fuzz.trapmf(x_niveau_litteraire, [4, 5, 8, 10])
-niveau_litteraire_M = fuzz.trapmf(x_niveau_litteraire, [8, 10, 12, 14])
-niveau_litteraire_B = fuzz.trapmf(x_niveau_litteraire, [12, 14, 16, 18])
-niveau_litteraire_TB = fuzz.trapmf(x_niveau_litteraire, [16, 18, 20, 20])
+niveau_litteraire_TI = fuzz.trimf(x_niveau_litteraire, [0, 0, 5])
+niveau_litteraire_I = fuzz.trimf(x_niveau_litteraire, [0, 5, 10])
+niveau_litteraire_M = fuzz.trimf(x_niveau_litteraire, [5, 10, 15])
+niveau_litteraire_B = fuzz.trimf(x_niveau_litteraire, [10, 15, 18])
+niveau_litteraire_TB = fuzz.trapmf(x_niveau_litteraire, [15, 18, 20, 20])
 
 #Sortie
 #score academique global
-x_score_academique_global = np.arange(0, 105, 5)
+x_score_academique_global = np.arange(0, 1.25, 0.25)
 
-score_academique_global_TF = fuzz.trapmf(x_score_academique_global, [0, 0, 25, 35])
-score_academique_global_F = fuzz.trapmf(x_score_academique_global, [25, 35, 45, 55])
-score_academique_global_M = fuzz.trapmf(x_score_academique_global, [45, 55, 65, 75])
-score_academique_global_B = fuzz.trapmf(x_score_academique_global, [65, 75, 85, 95])
-score_academique_global_TB = fuzz.trapmf(x_score_academique_global, [85, 95, 100, 100])
+score_academique_global_TF = fuzz.trimf(x_score_academique_global, [0, 0, 0.25])
+score_academique_global_F = fuzz.trimf(x_score_academique_global, [0, 0.25, 0.5])
+score_academique_global_M = fuzz.trimf(x_score_academique_global, [0.25, 0.5, 0.75])
+score_academique_global_B = fuzz.trimf(x_score_academique_global, [0.5, 0.75, 1])
+score_academique_global_TB = fuzz.trimf(x_score_academique_global, [0.75, 1, 1])
 
 
 #Regles
@@ -375,13 +403,13 @@ score_academique_global_sim = ctrl.ControlSystemSimulation(score_academique_glob
 #SF5
 #Entrees
 #Niveau du Lycée
-x_niveau_lycee = np.arange(0, 2.25, 0.25)
+x_niveau_lycee = np.arange(0, 1.25, 0.25)
 
-niveau_lycee_TI = fuzz.trapmf(x_niveau_lycee, [0, 0, 0, 0.25]) #<20%
-niveau_lycee_I = fuzz.trapmf(x_niveau_lycee, [0, 0.25, 0.5, 0.75]) #20-40%
-niveau_lycee_M = fuzz.trapmf(x_niveau_lycee, [0.5, 0.75, 1, 1.25]) #40-60%
-niveau_lycee_B = fuzz.trapmf(x_niveau_lycee, [1, 1.25, 1.5, 1.75]) #60-80%
-niveau_lycee_TB = fuzz.trapmf(x_niveau_lycee, [1.5, 1.75, 2, 2]) #>80%
+niveau_lycee_TI = fuzz.trimf(x_niveau_lycee, [0, 0, 0.25]) #<20%
+niveau_lycee_I = fuzz.trimf(x_niveau_lycee, [0, 0.25, 0.5]) #20-40%
+niveau_lycee_M = fuzz.trimf(x_niveau_lycee, [0.25, 0.5, 0.75]) #40-60%
+niveau_lycee_B = fuzz.trimf(x_niveau_lycee, [0.5, 0.75, 1]) #60-80%
+niveau_lycee_TB = fuzz.trimf(x_niveau_lycee, [0.75, 1, 1]) #>80%
 
 niveau_lycee = ctrl.Antecedent(x_niveau_lycee, 'niveau_lycee')
 
@@ -392,13 +420,13 @@ niveau_lycee['B'] = niveau_lycee_B
 niveau_lycee['TB'] = niveau_lycee_TB
 
 #Niveau de la Classe
-x_niveau_classe = np.arange(0, 2.25, 0.25)
+x_niveau_classe = np.arange(0, 1.25, 0.25)
 
-niveau_classe_TI = fuzz.trapmf(x_niveau_classe, [0, 0, 0, 0.25])
-niveau_classe_I = fuzz.trapmf(x_niveau_classe, [0, 0.25, 0.5, 0.75])
-niveau_classe_M = fuzz.trapmf(x_niveau_classe, [0.5, 0.75, 1, 1.25])
-niveau_classe_B = fuzz.trapmf(x_niveau_classe, [1, 1.25, 1.5, 1.75])
-niveau_classe_TB = fuzz.trapmf(x_niveau_classe, [1.5, 1.75, 2, 2])
+niveau_classe_TI = fuzz.trimf(x_niveau_classe, [0, 0, 0.25])
+niveau_classe_I = fuzz.trimf(x_niveau_classe, [0, 0.25, 0.5])
+niveau_classe_M = fuzz.trimf(x_niveau_classe, [0.25, 0.5, 0.75])
+niveau_classe_B = fuzz.trimf(x_niveau_classe, [0.5, 0.75, 1])
+niveau_classe_TB = fuzz.trimf(x_niveau_classe, [0.75, 1, 1])
 
 niveau_classe = ctrl.Antecedent(x_niveau_classe, 'niveau_classe')
 
@@ -409,11 +437,11 @@ niveau_classe['B'] = niveau_classe_B
 niveau_classe['TB'] = niveau_classe_TB
 
 #classement de l'eleve dans la classe
-x_classement_eleve = np.arange(0, 1.2, 0.2)
+x_classement_eleve = np.arange(0, 1.5, 0.5)
 
-classement_eleve_B = fuzz.trapmf(x_classement_eleve, [0, 0, 0.2, 0.4])
-classement_eleve_M = fuzz.trapmf(x_classement_eleve, [0.2, 0.4, 0.6, 0.8])
-classement_eleve_H = fuzz.trapmf(x_classement_eleve, [0.6, 0.8, 1, 1])
+classement_eleve_B = fuzz.trimf(x_classement_eleve, [0, 0, 0.5])
+classement_eleve_M = fuzz.trimf(x_classement_eleve, [0, 0.5, 1])
+classement_eleve_H = fuzz.trimf(x_classement_eleve, [0.5, 1, 1])
 
 classement_eleve = ctrl.Antecedent(x_classement_eleve, 'classement_eleve')
 
@@ -422,13 +450,13 @@ classement_eleve['M'] = classement_eleve_M
 classement_eleve['H'] = classement_eleve_H
 #Sortie
 #Score d'ajustement lycée-classe
-x_score_ajustement_lycee_classe = np.arange(0, 2.25, 0.25)
+x_score_ajustement_lycee_classe = np.arange(0, 1.25, 0.25)
 
-score_ajustement_lycee_classe_TF = fuzz.trapmf(x_score_ajustement_lycee_classe, [0, 0, 0, 0.25])
-score_ajustement_lycee_classe_F = fuzz.trapmf(x_score_ajustement_lycee_classe, [0, 0.25, 0.5, 0.75])
-score_ajustement_lycee_classe_M = fuzz.trapmf(x_score_ajustement_lycee_classe, [0.5, 0.75, 1, 1.25])
-score_ajustement_lycee_classe_B = fuzz.trapmf(x_score_ajustement_lycee_classe, [0.75, 1, 1.25, 1.5])
-score_ajustement_lycee_classe_TB = fuzz.trapmf(x_score_ajustement_lycee_classe, [1.25, 1.5, 2, 2])
+score_ajustement_lycee_classe_TF = fuzz.trimf(x_score_ajustement_lycee_classe, [0, 0, 0.25])
+score_ajustement_lycee_classe_F = fuzz.trimf(x_score_ajustement_lycee_classe, [0, 0.25, 0.5])
+score_ajustement_lycee_classe_M = fuzz.trimf(x_score_ajustement_lycee_classe, [0.25, 0.5, 0.75])
+score_ajustement_lycee_classe_B = fuzz.trimf(x_score_ajustement_lycee_classe, [0.5, 0.75, 1])
+score_ajustement_lycee_classe_TB = fuzz.trimf(x_score_ajustement_lycee_classe, [0.75, 1, 1])
 
 score_ajustement_lycee_classe = ctrl.Consequent(x_score_ajustement_lycee_classe, 'score_ajustement_lycee_classe')
 
@@ -522,13 +550,13 @@ score_ajustement_lycee_classe['B'] = score_ajustement_lycee_classe_B
 score_ajustement_lycee_classe['TB'] = score_ajustement_lycee_classe_TB
 #Sortie
 #Niveau scolaire ajusté
-x_niveau_scolaire_ajuste = np.arange(0, 5, 0.5)
+x_niveau_scolaire_ajuste = np.arange(0, 1.25, 0.25)
 
-niveau_scolaire_ajuste_TF = fuzz.trapmf(x_niveau_scolaire_ajuste, [0, 0, 0.5, 1])
-niveau_scolaire_ajuste_F = fuzz.trapmf(x_niveau_scolaire_ajuste, [0.5, 1, 1.5, 2])
-niveau_scolaire_ajuste_M = fuzz.trapmf(x_niveau_scolaire_ajuste, [1.5, 2, 2.5, 3])
-niveau_scolaire_ajuste_B = fuzz.trapmf(x_niveau_scolaire_ajuste, [2.5, 3, 3.5, 4])
-niveau_scolaire_ajuste_TB = fuzz.trapmf(x_niveau_scolaire_ajuste, [3.5, 4, 4.5, 4.5])
+niveau_scolaire_ajuste_TF = fuzz.trimf(x_niveau_scolaire_ajuste, [0, 0, 0.25])
+niveau_scolaire_ajuste_F = fuzz.trimf(x_niveau_scolaire_ajuste, [0 ,0.25, 0.5])
+niveau_scolaire_ajuste_M = fuzz.trimf(x_niveau_scolaire_ajuste, [0.25, 0.5, 0.75])
+niveau_scolaire_ajuste_B = fuzz.trimf(x_niveau_scolaire_ajuste, [0.5, 0.75, 1])
+niveau_scolaire_ajuste_TB = fuzz.trimf(x_niveau_scolaire_ajuste, [0.75, 1, 1])
 
 niveau_scolaire_ajuste = ctrl.Consequent(x_niveau_scolaire_ajuste, 'niveau_scolaire_ajuste')
 
@@ -554,8 +582,8 @@ tab_niveau_scolaire_ajuste = [
 
 liste_regles = []
 
-for x, score_academique_global_label in enumerate(['TF', 'F', 'M', 'B', 'TB']):
-    for y, score_ajustement_lycee_classe_label in enumerate(['TF', 'F', 'M', 'B', 'TB']):
+for x, score_ajustement_lycee_classe_label  in enumerate(['TF', 'F', 'M', 'B', 'TB']):
+    for y, score_academique_global_label  in enumerate(['TF', 'F', 'M', 'B', 'TB']):
         # Définir le niveau scolaire ajusté cible
         niveau_scolaire_ajuste_target = tab_niveau_scolaire_ajuste[x][y]
         
@@ -599,13 +627,13 @@ motivation['B'] = motivation_B
 motivation['TB'] = motivation_TB
 #sortie
 #predisposition academique
-x_predisposition_academique = np.arange(0, 9, 1)
+x_predisposition_academique = np.arange(0, 1.25, 0.25)
 
-predisposition_academique_TF = fuzz.trapmf(x_predisposition_academique, [0, 0, 1, 2])
-predisposition_academique_F = fuzz.trapmf(x_predisposition_academique, [1, 2, 3, 4])
-predisposition_academique_M = fuzz.trapmf(x_predisposition_academique, [3, 4, 5, 6])
-predisposition_academique_B = fuzz.trapmf(x_predisposition_academique, [5, 6, 7, 8])
-predisposition_academique_TB = fuzz.trapmf(x_predisposition_academique, [7, 8, 9, 9])
+predisposition_academique_TF = fuzz.trimf(x_predisposition_academique, [0, 0, 0.25])
+predisposition_academique_F = fuzz.trimf(x_predisposition_academique, [0, 0.25, 0.5])
+predisposition_academique_M = fuzz.trimf(x_predisposition_academique, [0.25, 0.5, 0.75])
+predisposition_academique_B = fuzz.trimf(x_predisposition_academique, [0.5, 0.75, 1])
+predisposition_academique_TB = fuzz.trimf(x_predisposition_academique, [0.75, 1, 1])
 
 predisposition_academique = ctrl.Consequent(x_predisposition_academique, 'predisposition_academique')
 
@@ -631,8 +659,8 @@ tab_predisposition_academique = [
 
 liste_regles = []
 
-for x, engagement_label in enumerate(['TF', 'F', 'M', 'B', 'E']):
-    for y, motivation_label in enumerate(['TF', 'F', 'M', 'B', 'TB']):
+for x, motivation_label in enumerate(['TF', 'F', 'M', 'B', 'TB']):
+    for y, engagement_label in enumerate(['TF', 'F', 'M', 'B', 'E']):
         # Définir la predisposition academique cible
         predisposition_academique_target = tab_predisposition_academique[x][y]
         
@@ -678,14 +706,25 @@ niveau_scolaire_ajuste['TB'] = niveau_scolaire_ajuste_TB
 
 #sortie
 #Score de l'élève
-x_score_eleve = np.arange(0, 105, 5)
+x_score_eleve = np.arange(0, 1.25, 0.25)
 
-score_eleve_TF = fuzz.trapmf(x_score_eleve, [0, 0, 25, 35])
-score_eleve_F = fuzz.trapmf(x_score_eleve, [25, 35, 45, 55])
-score_eleve_M = fuzz.trapmf(x_score_eleve, [45, 55, 65, 75])
-score_eleve_B = fuzz.trapmf(x_score_eleve, [65, 75, 85, 95])
-score_eleve_TB = fuzz.trapmf(x_score_eleve, [85, 95, 100, 100])
+score_eleve_TF = fuzz.trimf(x_score_eleve, [0, 0, 0.25])
+score_eleve_F = fuzz.trimf(x_score_eleve, [0, 0.25, 0.5])
+score_eleve_M = fuzz.trimf(x_score_eleve, [0.25, 0.5, 0.75])
+score_eleve_B = fuzz.trimf(x_score_eleve, [0.5, 0.75, 1])
+score_eleve_TB = fuzz.trimf(x_score_eleve, [0.75, 1, 1])
+#afficher les fonctions d'appartenance
+# fig, ax = plt.subplots()
+# ax.plot(x_score_eleve, score_eleve_TF, 'b', linewidth=1.5, label='TF')
+# ax.plot(x_score_eleve, score_eleve_F, 'g', linewidth=1.5, label='F')
+# ax.plot(x_score_eleve, score_eleve_M, 'r', linewidth=1.5, label='M')
+# ax.plot(x_score_eleve, score_eleve_B, 'y', linewidth=1.5, label='B')
 
+# ax.plot(x_score_eleve, score_eleve_TB, 'm', linewidth=1.5, label='TB')
+
+# ax.set_title('Score de l\'élève')
+# ax.legend()
+# plt.show()
 score_eleve = ctrl.Consequent(x_score_eleve, 'score_eleve')
 
 score_eleve['TF'] = score_eleve_TF
@@ -708,8 +747,8 @@ tab_score_eleve = [
 
 liste_regles = []
 
-for x, predisposition_academique_label in enumerate(['TF', 'F', 'M', 'B', 'TB']):
-    for y, niveau_scolaire_ajuste_label in enumerate(['TF', 'F', 'M', 'B', 'TB']):
+for x, niveau_scolaire_ajuste_label in enumerate(['TF', 'F', 'M', 'B', 'TB']):
+    for y,predisposition_academique_label  in enumerate(['TF', 'F', 'M', 'B', 'TB']):
         # Définir le score de l'élève cible
         score_eleve_target = tab_score_eleve[x][y]
         
@@ -732,13 +771,13 @@ score_eleve_sim = ctrl.ControlSystemSimulation(score_eleve_ctrl)
 
 
 systemes_flous_dico = {
-    'engagement': engagement_sim,
-    'motivation': motivation_sim,
-    'score_academique_global': score_academique_global_sim,
-    'score_ajustement_lycee_classe': score_ajustement_lycee_classe_sim,
-    'niveau_scolaire_ajuste': niveau_scolaire_ajuste_sim,
-    'predisposition_academique': predisposition_academique_sim,
-    'score_eleve': score_eleve_sim
+    'engagement': [engagement_sim, x_engagement, [engagement_TF, engagement_F, engagement_M, engagement_B, engagement_E]],
+    'motivation': [motivation_sim, x_motivation, [motivation_TF, motivation_F, motivation_M, motivation_B, motivation_TB]], 
+    'score_academique_global': [score_academique_global_sim, x_score_academique_global, [score_academique_global_TF, score_academique_global_F, score_academique_global_M, score_academique_global_B, score_academique_global_TB]],
+    'score_ajustement_lycee_classe': [score_ajustement_lycee_classe_sim, x_score_ajustement_lycee_classe, [score_ajustement_lycee_classe_TF, score_ajustement_lycee_classe_F, score_ajustement_lycee_classe_M, score_ajustement_lycee_classe_B, score_ajustement_lycee_classe_TB]],
+    'niveau_scolaire_ajuste': [niveau_scolaire_ajuste_sim, x_niveau_scolaire_ajuste, [niveau_scolaire_ajuste_TF, niveau_scolaire_ajuste_F, niveau_scolaire_ajuste_M, niveau_scolaire_ajuste_B, niveau_scolaire_ajuste_TB]],
+    'predisposition_academique': [predisposition_academique_sim, x_predisposition_academique, [predisposition_academique_TF, predisposition_academique_F, predisposition_academique_M, predisposition_academique_B, predisposition_academique_TB]],
+    'score_eleve': [score_eleve_sim, x_score_eleve, [score_eleve_TF, score_eleve_F, score_eleve_M, score_eleve_B, score_eleve_TB]]
 }
 
 import pickle
