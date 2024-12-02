@@ -24,10 +24,10 @@ if __name__ == "__main__":
     
     
     
-    # Compute SF1
+    # Compute CAF1
     activites_extrascolaires = activites_sportives + activites_sociales + projet_personnel
 
-    print(f"Output of SF1 - Activités Extrascolaires: {activites_extrascolaires}")
+    print(f"Output of CAF1 - Activités Extrascolaires: {activites_extrascolaires}")
 
     # Compute SF2 (Engagement)
     # Set inputs for SF2
@@ -37,7 +37,9 @@ if __name__ == "__main__":
 
     # Compute SF2
     systemes_flous["engagement"][0].compute()
-    # print(type(systemes_flous["engagement"][0]))
+    systemes_flous["engagement"][0].print_state()
+    # systemes_flous["engagement"][0].view()
+    
     engagement = systemes_flous["engagement"][0].output['engagement']
     for fonction in systemes_flous["engagement"][2]:
         xxmf = fuzz.interp_membership(systemes_flous["engagement"][1], fonction, engagement)
