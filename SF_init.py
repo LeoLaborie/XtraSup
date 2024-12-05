@@ -29,21 +29,21 @@ appreciation_des_professseurs_TP = trimf(x_appreciation_des_professseurs, [0.75,
 # plt.show()
 
 #Potentiel Academique Perçu
-x_potentiel_academique_perçu = np.arange(0, 1.5, 0.5)
+x_potentiel_academique_percu = np.arange(0, 1.5, 0.5)
 
-potentiel_academique_perçu_FAIBLE = trimf(x_potentiel_academique_perçu, [0, 0, 0.5])
-potentiel_academique_perçu_MOYEN = trimf(x_potentiel_academique_perçu, [0, 0.5, 1])
-potentiel_academique_perçu_FORT = trimf(x_potentiel_academique_perçu, [0.5, 1, 1])
+potentiel_academique_percu_FAIBLE = trimf(x_potentiel_academique_percu, [0, 0, 0.5])
+potentiel_academique_percu_MOYEN = trimf(x_potentiel_academique_percu, [0, 0.5, 1])
+potentiel_academique_percu_FORT = trimf(x_potentiel_academique_percu, [0.5, 1, 1])
 
 #Activite Extrascolaire 
 
-x_activite_extrascolaire = np.arange(0, 1.25, 0.25)
+x_activites_extrascolaires = np.arange(0, 1.25, 0.25)
 
-activite_extrascolaire_I = trimf(x_activite_extrascolaire, [0, 0 ,0.25])
-activite_extrascolaire_P = trimf(x_activite_extrascolaire, [0,0.25,0.5])
-activite_extrascolaire_M = trimf(x_activite_extrascolaire,  [0.25, 0.5, 0.75])
-activite_extrascolaire_N = trimf(x_activite_extrascolaire, [0.5, 0.75, 1])
-activite_extrascolaire_TN = trimf(x_activite_extrascolaire,  [0.75, 1,1])
+activites_extrascolaires_I = trimf(x_activites_extrascolaires, [0, 0 ,0.25])
+activites_extrascolaires_P = trimf(x_activites_extrascolaires, [0,0.25,0.5])
+activites_extrascolaires_M = trimf(x_activites_extrascolaires,  [0.25, 0.5, 0.75])
+activites_extrascolaires_N = trimf(x_activites_extrascolaires, [0.5, 0.75, 1])
+activites_extrascolaires_TN = trimf(x_activites_extrascolaires,  [0.75, 1,1])
 
 #Sortie
 #Engagement
@@ -89,8 +89,8 @@ tab_engagement = [
 
 SF2 = SystemeFlou()
 SF2.ajouter_variable_entree("appreciation_des_professeurs", x_appreciation_des_professseurs, {"TN": appreciation_des_professseurs_TN, "N": appreciation_des_professseurs_N, "NTR": appreciation_des_professseurs_NTR, "P": appreciation_des_professseurs_P, "TP": appreciation_des_professseurs_TP})
-SF2.ajouter_variable_entree("potentiel_academique_perçu", x_potentiel_academique_perçu, {"FAIBLE": potentiel_academique_perçu_FAIBLE, "MOYEN": potentiel_academique_perçu_MOYEN, "FORT": potentiel_academique_perçu_FORT})
-SF2.ajouter_variable_entree("activite_extrascolaire", x_activite_extrascolaire, {"I": activite_extrascolaire_I, "P": activite_extrascolaire_P, "M": activite_extrascolaire_M, "N": activite_extrascolaire_N, "TN": activite_extrascolaire_TN})
+SF2.ajouter_variable_entree("potentiel_academique_percu", x_potentiel_academique_percu, {"FAIBLE": potentiel_academique_percu_FAIBLE, "MOYEN": potentiel_academique_percu_MOYEN, "FORT": potentiel_academique_percu_FORT})
+SF2.ajouter_variable_entree("activites_extrascolaires", x_activites_extrascolaires, {"I": activites_extrascolaires_I, "P": activites_extrascolaires_P, "M": activites_extrascolaires_M, "N": activites_extrascolaires_N, "TN": activites_extrascolaires_TN})
 SF2.ajouter_variable_sortie("engagement", x_engagement, {"TF": engagement_TF, "F": engagement_F, "M": engagement_M, "B": engagement_B, "E": engagement_E})
 
 liste_regles = []
@@ -105,8 +105,8 @@ for x, potentiel_label in enumerate(['FAIBLE', 'MOYEN', 'FORT']):
             rule = {
                 "conditions": {
                     "appreciation_des_professeurs": appreciation_label,
-                    "potentiel_academique_perçu": potentiel_label,
-                    "activite_extrascolaire": extrascolaire_label
+                    "potentiel_academique_percu": potentiel_label,
+                    "activites_extrascolaires": extrascolaire_label
                 },
                 "conclusion": engagement_target
             }
