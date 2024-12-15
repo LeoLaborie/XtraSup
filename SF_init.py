@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 print("Initialisation des systemes flous...")
-#SF2
+#SF1
 
 #Entrees
 #appreciation des professeurs
@@ -62,8 +62,8 @@ tab_engagement = [
     # Potentiel académique FAIBLE
     [
         ['TF', 'F', 'F', 'M', 'M'],  # Activité extrascolaire 'I'
-        ['TF', 'F', 'M', 'M', 'B'],    # Activité extrascolaire 'P'
-        ['TF', 'M', 'M', 'B', 'B'],      # Activité extrascolaire 'M'
+        ['TF', 'F', 'M', 'M', 'M'],    # Activité extrascolaire 'P'
+        ['TF', 'M', 'M', 'M', 'B'],      # Activité extrascolaire 'M'
         ['TF', 'M', 'M', 'B', 'B'],      # Activité extrascolaire 'N'
         ['TF', 'M', 'M', 'B', 'B'],      # Activité extrascolaire 'TN'
     ],
@@ -87,11 +87,11 @@ tab_engagement = [
     ],
 ]
 
-SF2 = SystemeFlou()
-SF2.ajouter_variable_entree("appreciation_des_professeurs", x_appreciation_des_professseurs, {"TN": appreciation_des_professseurs_TN, "N": appreciation_des_professseurs_N, "NTR": appreciation_des_professseurs_NTR, "P": appreciation_des_professseurs_P, "TP": appreciation_des_professseurs_TP})
-SF2.ajouter_variable_entree("potentiel_academique_percu", x_potentiel_academique_percu, {"FAIBLE": potentiel_academique_percu_FAIBLE, "MOYEN": potentiel_academique_percu_MOYEN, "FORT": potentiel_academique_percu_FORT})
-SF2.ajouter_variable_entree("activites_extrascolaires", x_activites_extrascolaires, {"I": activites_extrascolaires_I, "P": activites_extrascolaires_P, "M": activites_extrascolaires_M, "N": activites_extrascolaires_N, "TN": activites_extrascolaires_TN})
-SF2.ajouter_variable_sortie("engagement", x_engagement, {"TF": engagement_TF, "F": engagement_F, "M": engagement_M, "B": engagement_B, "E": engagement_E})
+SF1 = SystemeFlou()
+SF1.ajouter_variable_entree("appreciation_des_professeurs", x_appreciation_des_professseurs, {"TN": appreciation_des_professseurs_TN, "N": appreciation_des_professseurs_N, "NTR": appreciation_des_professseurs_NTR, "P": appreciation_des_professseurs_P, "TP": appreciation_des_professseurs_TP})
+SF1.ajouter_variable_entree("potentiel_academique_percu", x_potentiel_academique_percu, {"FAIBLE": potentiel_academique_percu_FAIBLE, "MOYEN": potentiel_academique_percu_MOYEN, "FORT": potentiel_academique_percu_FORT})
+SF1.ajouter_variable_entree("activites_extrascolaires", x_activites_extrascolaires, {"I": activites_extrascolaires_I, "P": activites_extrascolaires_P, "M": activites_extrascolaires_M, "N": activites_extrascolaires_N, "TN": activites_extrascolaires_TN})
+SF1.ajouter_variable_sortie("engagement", x_engagement, {"TF": engagement_TF, "F": engagement_F, "M": engagement_M, "B": engagement_B, "E": engagement_E})
 
 liste_regles = []
 
@@ -111,15 +111,15 @@ for x, potentiel_label in enumerate(['FAIBLE', 'MOYEN', 'FORT']):
                 "conclusion": engagement_target
             }
         
-            SF2.ajouter_regle(rule)
+            SF1.ajouter_regle(rule)
 
-#FIN SF2
-
-
+#FIN SF1
 
 
 
-#SF3
+
+
+#SF2
 
 #Entrees
 #motivation percue
@@ -162,10 +162,10 @@ tab_motivation = [
     ['F', 'M', 'B', 'TB', 'TB'],    # Qualité lettre de motivation 'TB'
 ]
 
-SF3 = SystemeFlou()
-SF3.ajouter_variable_entree("motivation_percue", x_motivation_percue, {"TI": motivation_percue_TI, "I": motivation_percue_I, "M": motivation_percue_M, "B": motivation_percue_B, "TB": motivation_percue_TB})
-SF3.ajouter_variable_entree("qualite_lettre_de_motivation", x_qualite_lettre_de_motivation, {"TI": qualite_lettre_de_motivation_TI, "I": qualite_lettre_de_motivation_I, "M": qualite_lettre_de_motivation_M, "B": qualite_lettre_de_motivation_B, "TB": qualite_lettre_de_motivation_TB})
-SF3.ajouter_variable_sortie("motivation", x_motivation, {"TF": motivation_TF, "F": motivation_F, "M": motivation_M, "B": motivation_B, "TB": motivation_TB})
+SF2 = SystemeFlou()
+SF2.ajouter_variable_entree("motivation_percue", x_motivation_percue, {"TI": motivation_percue_TI, "I": motivation_percue_I, "M": motivation_percue_M, "B": motivation_percue_B, "TB": motivation_percue_TB})
+SF2.ajouter_variable_entree("qualite_lettre_de_motivation", x_qualite_lettre_de_motivation, {"TI": qualite_lettre_de_motivation_TI, "I": qualite_lettre_de_motivation_I, "M": qualite_lettre_de_motivation_M, "B": qualite_lettre_de_motivation_B, "TB": qualite_lettre_de_motivation_TB})
+SF2.ajouter_variable_sortie("motivation", x_motivation, {"TF": motivation_TF, "F": motivation_F, "M": motivation_M, "B": motivation_B, "TB": motivation_TB})
 
 
 for x, qualite_lettre_de_motivation_label in enumerate(['TI', 'I', 'M', 'B', 'TB']):
@@ -182,14 +182,14 @@ for x, qualite_lettre_de_motivation_label in enumerate(['TI', 'I', 'M', 'B', 'TB
             "conclusion": motivation_target
         }
         
-        SF3.ajouter_regle(rule)
+        SF2.ajouter_regle(rule)
 
-#FIN SF3
-
-
+#FIN SF2
 
 
-#SF4
+
+
+#SF3
 #Entrees
 #Résultat scolaire
 x_resultat_scolaire = np.arange(0, 21, 1)
@@ -218,8 +218,8 @@ x_niveau_scientifique = np.arange(0, 21, 1)
 niveau_scientifique_TI = trimf(x_niveau_scientifique, [0, 0, 5])
 niveau_scientifique_I = trimf(x_niveau_scientifique, [0, 5, 10])
 niveau_scientifique_M = trimf(x_niveau_scientifique, [5, 10, 15])
-niveau_scientifique_B = trimf(x_niveau_scientifique, [10, 15, 18])
-niveau_scientifique_TB = trapmf(x_niveau_scientifique, [15, 18, 20, 20])
+niveau_scientifique_B = trimf(x_niveau_scientifique, [10, 15, 19])
+niveau_scientifique_TB = trapmf(x_niveau_scientifique, [15, 19, 20, 20])
 
 #Niveau litteraire
 x_niveau_litteraire = np.arange(0, 21, 1)
@@ -292,11 +292,11 @@ tab_score_academique_global = [
     ],
 ]
 
-SF4 = SystemeFlou()
-SF4.ajouter_variable_entree("resultat_scolaire", x_resultat_scolaire, {"TI": resultat_scolaire_TI, "I": resultat_scolaire_I, "M": resultat_scolaire_M, "B": resultat_scolaire_B, "TB": resultat_scolaire_TB})
-SF4.ajouter_variable_entree("niveau_scientifique", x_niveau_scientifique, {"TI": niveau_scientifique_TI, "I": niveau_scientifique_I, "M": niveau_scientifique_M, "B": niveau_scientifique_B, "TB": niveau_scientifique_TB})
-SF4.ajouter_variable_entree("niveau_litteraire", x_niveau_litteraire, {"TI": niveau_litteraire_TI, "I": niveau_litteraire_I, "M": niveau_litteraire_M, "B": niveau_litteraire_B, "TB": niveau_litteraire_TB})
-SF4.ajouter_variable_sortie("score_academique_global", x_score_academique_global, {"TF": score_academique_global_TF, "F": score_academique_global_F, "M": score_academique_global_M, "B": score_academique_global_B, "TB": score_academique_global_TB})
+SF3 = SystemeFlou()
+SF3.ajouter_variable_entree("resultat_scolaire", x_resultat_scolaire, {"TI": resultat_scolaire_TI, "I": resultat_scolaire_I, "M": resultat_scolaire_M, "B": resultat_scolaire_B, "TB": resultat_scolaire_TB})
+SF3.ajouter_variable_entree("niveau_scientifique", x_niveau_scientifique, {"TI": niveau_scientifique_TI, "I": niveau_scientifique_I, "M": niveau_scientifique_M, "B": niveau_scientifique_B, "TB": niveau_scientifique_TB})
+SF3.ajouter_variable_entree("niveau_litteraire", x_niveau_litteraire, {"TI": niveau_litteraire_TI, "I": niveau_litteraire_I, "M": niveau_litteraire_M, "B": niveau_litteraire_B, "TB": niveau_litteraire_TB})
+SF3.ajouter_variable_sortie("score_academique_global", x_score_academique_global, {"TF": score_academique_global_TF, "F": score_academique_global_F, "M": score_academique_global_M, "B": score_academique_global_B, "TB": score_academique_global_TB})
 
 
 for x, resultat_scolaire_label in enumerate(['TI', 'I', 'M', 'B', 'TB']):
@@ -315,23 +315,23 @@ for x, resultat_scolaire_label in enumerate(['TI', 'I', 'M', 'B', 'TB']):
                 "conclusion": score_academique_global_target
             }
             
-            SF4.ajouter_regle(rule)
+            SF3.ajouter_regle(rule)
 
-#FIN SF4
-
-
+#FIN SF3
 
 
-#SF5
+
+
+#SF4
 #Entrees
 #Niveau du Lycée
 x_niveau_lycee = np.arange(0, 1.25, 0.25)
 
-niveau_lycee_TI = trimf(x_niveau_lycee, [0, 0, 0.25]) #<20%
-niveau_lycee_I = trimf(x_niveau_lycee, [0, 0.25, 0.5]) #20-40%
-niveau_lycee_M = trimf(x_niveau_lycee, [0.25, 0.5, 0.75]) #40-60%
-niveau_lycee_B = trimf(x_niveau_lycee, [0.5, 0.75, 1]) #60-80%
-niveau_lycee_TB = trimf(x_niveau_lycee, [0.75, 1, 1]) #>80%
+niveau_lycee_TI = trimf(x_niveau_lycee, [0, 0, 0.25]) 
+niveau_lycee_I = trimf(x_niveau_lycee, [0, 0.25, 0.5]) 
+niveau_lycee_M = trimf(x_niveau_lycee, [0.25, 0.5, 0.75]) 
+niveau_lycee_B = trimf(x_niveau_lycee, [0.5, 0.75, 1]) 
+niveau_lycee_TB = trimf(x_niveau_lycee, [0.75, 1, 1]) 
 
 #Niveau de la Classe
 x_niveau_classe = np.arange(0, 1.25, 0.25)
@@ -370,37 +370,37 @@ tab_score_ajustement_lycee_classe = [
     
     # classement de l'eleve dans la classe 'B'
     [
-        ['TF', 'TF', 'TF', 'TF', 'TF'],  # Niveau de la Classe 'TI'
-        ['TF', 'TF', 'TF', 'F', 'F'],   # Niveau de la Classe 'I'
-        ['TF', 'TF', 'F', 'F', 'M'],    # Niveau de la Classe 'M'
-        ['TF', 'TF', 'F', 'B', 'B'],    # Niveau de la Classe 'B'
-        ['TF', 'F', 'M', 'B', 'B'],    # Niveau de la Classe 'TB'
+        ['TF', 'TF', 'TF', 'F', 'M'],  # Niveau de la Classe 'TI'
+        ['TF', 'TF', 'TF', 'F', 'M'],   # Niveau de la Classe 'I'
+        ['TF', 'TF', 'F', 'M', 'B'],    # Niveau de la Classe 'M'
+        ['TF', 'TF', 'F', 'B', 'TB'],    # Niveau de la Classe 'B'
+        ['TF', 'F', 'M', 'B', 'TB'],    # Niveau de la Classe 'TB'
     ],
     
     # classement de l'eleve dans la classe 'M'
     [
-        ['TF', 'TF', 'F', 'F', 'F'],  # Niveau de la Classe 'TI'
-        ['TF', 'TF', 'F', 'F', 'M'],   # Niveau de la Classe 'I'
-        ['TF', 'TF', 'F', 'M', 'B'],    # Niveau de la Classe 'M'
-        ['TF', 'F', 'M', 'B', 'B'],    # Niveau de la Classe 'B'
-        ['TF', 'F', 'B', 'B', 'TB'],    # Niveau de la Classe 'TB'
+        ['TF', 'TF', 'F', 'F', 'M'],  # Niveau de la Classe 'TI'
+        ['TF', 'TF', 'F', 'M', 'B'],   # Niveau de la Classe 'I'
+        ['TF', 'TF', 'F', 'B', 'TB'],    # Niveau de la Classe 'M'
+        ['TF', 'F', 'M', 'TB', 'TB'],    # Niveau de la Classe 'B'
+        ['TF', 'F', 'B', 'TB', 'TB'],    # Niveau de la Classe 'TB'
     ],
     
     # classement de l'eleve dans la classe 'H'
     [
-        ['F', 'F', 'M', 'B', 'B'],  # Niveau de la Classe 'TI'
-        ['F', 'M', 'B', 'B', 'TB'],   # Niveau de la Classe 'I'
+        ['F', 'F', 'B', 'TB', 'TB'],  # Niveau de la Classe 'TI'
+        ['F', 'M', 'B', 'TB', 'TB'],   # Niveau de la Classe 'I'
         ['F', 'B', 'B', 'TB', 'TB'],    # Niveau de la Classe 'M'
         ['M', 'B', 'B', 'TB', 'TB'],    # Niveau de la Classe 'B'
         ['M', 'B', 'TB', 'TB', 'TB'],    # Niveau de la Classe 'TB'
     ],
 ]
 
-SF5 = SystemeFlou()
-SF5.ajouter_variable_entree("niveau_lycee", x_niveau_lycee, {"TI": niveau_lycee_TI, "I": niveau_lycee_I, "M": niveau_lycee_M, "B": niveau_lycee_B, "TB": niveau_lycee_TB})
-SF5.ajouter_variable_entree("niveau_classe", x_niveau_classe, {"TI": niveau_classe_TI, "I": niveau_classe_I, "M": niveau_classe_M, "B": niveau_classe_B, "TB": niveau_classe_TB})
-SF5.ajouter_variable_entree("classement_eleve", x_classement_eleve, {"B": classement_eleve_B, "M": classement_eleve_M, "H": classement_eleve_H})
-SF5.ajouter_variable_sortie("score_ajustement_lycee_classe", x_score_ajustement_lycee_classe, {"TF": score_ajustement_lycee_classe_TF, "F": score_ajustement_lycee_classe_F, "M": score_ajustement_lycee_classe_M, "B": score_ajustement_lycee_classe_B, "TB": score_ajustement_lycee_classe_TB})
+SF4 = SystemeFlou()
+SF4.ajouter_variable_entree("niveau_lycee", x_niveau_lycee, {"TI": niveau_lycee_TI, "I": niveau_lycee_I, "M": niveau_lycee_M, "B": niveau_lycee_B, "TB": niveau_lycee_TB})
+SF4.ajouter_variable_entree("niveau_classe", x_niveau_classe, {"TI": niveau_classe_TI, "I": niveau_classe_I, "M": niveau_classe_M, "B": niveau_classe_B, "TB": niveau_classe_TB})
+SF4.ajouter_variable_entree("classement_eleve", x_classement_eleve, {"B": classement_eleve_B, "M": classement_eleve_M, "H": classement_eleve_H})
+SF4.ajouter_variable_sortie("score_ajustement_lycee_classe", x_score_ajustement_lycee_classe, {"TF": score_ajustement_lycee_classe_TF, "F": score_ajustement_lycee_classe_F, "M": score_ajustement_lycee_classe_M, "B": score_ajustement_lycee_classe_B, "TB": score_ajustement_lycee_classe_TB})
 
 
 
@@ -420,14 +420,14 @@ for x, classement_eleve_label in enumerate(['B', 'M', 'H']):
                 "conclusion": score_ajustement_lycee_classe_target
             }
             
-            SF5.ajouter_regle(rule)
+            SF4.ajouter_regle(rule)
 
-#FIN SF5
-
-
+#FIN SF4
 
 
-#SF6
+
+
+#SF5
 #Entrees
 #Score académique global
 
@@ -455,14 +455,14 @@ tab_niveau_scolaire_ajuste = [
     ['TF', 'TF', 'TF', 'F', 'M'],  # Score d'ajustement lycée-classe 'TF'
     ['TF', 'TF', 'F', 'M', 'B'],  # Score d'ajustement lycée-classe 'F'
     ['TF', 'TF', 'F', 'M', 'TB'],  # Score d'ajustement lycée-classe 'M'
-    ['TF', 'TF', 'M', 'B', 'TB'],  # Score d'ajustement lycée-classe 'B'
-    ['TF', 'F', 'M', 'TB', 'TB'],  # Score d'ajustement lycée-classe 'TB'
+    ['TF', 'F', 'B', 'B', 'TB'],  # Score d'ajustement lycée-classe 'B'
+    ['F', 'M', 'B', 'TB', 'TB'],  # Score d'ajustement lycée-classe 'TB'
 ]
 
-SF6 = SystemeFlou()
-SF6.ajouter_variable_entree("score_academique_global", x_score_academique_global, {"TF": score_academique_global_TF, "F": score_academique_global_F, "M": score_academique_global_M, "B": score_academique_global_B, "TB": score_academique_global_TB})
-SF6.ajouter_variable_entree("score_ajustement_lycee_classe", x_score_ajustement_lycee_classe, {"TF": score_ajustement_lycee_classe_TF, "F": score_ajustement_lycee_classe_F, "M": score_ajustement_lycee_classe_M, "B": score_ajustement_lycee_classe_B, "TB": score_ajustement_lycee_classe_TB})
-SF6.ajouter_variable_sortie("niveau_scolaire_ajuste", x_niveau_scolaire_ajuste, {"TF": niveau_scolaire_ajuste_TF, "F": niveau_scolaire_ajuste_F, "M": niveau_scolaire_ajuste_M, "B": niveau_scolaire_ajuste_B, "TB": niveau_scolaire_ajuste_TB})
+SF5 = SystemeFlou()
+SF5.ajouter_variable_entree("score_academique_global", x_score_academique_global, {"TF": score_academique_global_TF, "F": score_academique_global_F, "M": score_academique_global_M, "B": score_academique_global_B, "TB": score_academique_global_TB})
+SF5.ajouter_variable_entree("score_ajustement_lycee_classe", x_score_ajustement_lycee_classe, {"TF": score_ajustement_lycee_classe_TF, "F": score_ajustement_lycee_classe_F, "M": score_ajustement_lycee_classe_M, "B": score_ajustement_lycee_classe_B, "TB": score_ajustement_lycee_classe_TB})
+SF5.ajouter_variable_sortie("niveau_scolaire_ajuste", x_niveau_scolaire_ajuste, {"TF": niveau_scolaire_ajuste_TF, "F": niveau_scolaire_ajuste_F, "M": niveau_scolaire_ajuste_M, "B": niveau_scolaire_ajuste_B, "TB": niveau_scolaire_ajuste_TB})
 
 
 for x, score_ajustement_lycee_classe_label  in enumerate(['TF', 'F', 'M', 'B', 'TB']):
@@ -479,15 +479,15 @@ for x, score_ajustement_lycee_classe_label  in enumerate(['TF', 'F', 'M', 'B', '
             "conclusion": niveau_scolaire_ajuste_target
         }
         
-        SF6.ajouter_regle(rule)
+        SF5.ajouter_regle(rule)
         
 
-#FIN SF6
+#FIN SF5
 
 
 
 
-#SF7
+#SF6
 #Entrees
 #engagement
 
@@ -510,18 +510,18 @@ predisposition_academique_TB = trimf(x_predisposition_academique, [0.75, 1, 1])
 tab_predisposition_academique = [
     # Engagement
     #"TF"  "F"   "M"   "B"   "E"
-    ['TF', 'TF', 'TF', 'F', 'F'],  # Motivation 'TF'
-    ['TF', 'TF', 'F', 'F', 'M'],  # Motivation 'F'
+    ['TF', 'TF', 'TF', 'F', 'M'],  # Motivation 'TF'
+    ['TF', 'TF', 'F', 'M', 'B'],  # Motivation 'F'
     ['F', 'F', 'M', 'M', 'B'],  # Motivation 'M'
     ['M', 'B', 'B', 'B', 'TB'],  # Motivation 'B'
     ['B', 'B', 'B', 'TB', 'TB'],  # Motivation 'TB'
 ]
 
 
-SF7 = SystemeFlou()
-SF7.ajouter_variable_entree("engagement", x_engagement, {"TF": engagement_TF, "F": engagement_F, "M": engagement_M, "B": engagement_B, "E": engagement_E})
-SF7.ajouter_variable_entree("motivation", x_motivation, {"TF": motivation_TF, "F": motivation_F, "M": motivation_M, "B": motivation_B, "TB": motivation_TB})
-SF7.ajouter_variable_sortie("predisposition_academique", x_predisposition_academique, {"TF": predisposition_academique_TF, "F": predisposition_academique_F, "M": predisposition_academique_M, "B": predisposition_academique_B, "TB": predisposition_academique_TB})
+SF6 = SystemeFlou()
+SF6.ajouter_variable_entree("engagement", x_engagement, {"TF": engagement_TF, "F": engagement_F, "M": engagement_M, "B": engagement_B, "E": engagement_E})
+SF6.ajouter_variable_entree("motivation", x_motivation, {"TF": motivation_TF, "F": motivation_F, "M": motivation_M, "B": motivation_B, "TB": motivation_TB})
+SF6.ajouter_variable_sortie("predisposition_academique", x_predisposition_academique, {"TF": predisposition_academique_TF, "F": predisposition_academique_F, "M": predisposition_academique_M, "B": predisposition_academique_B, "TB": predisposition_academique_TB})
 
 
 
@@ -539,14 +539,14 @@ for x, motivation_label in enumerate(['TF', 'F', 'M', 'B', 'TB']):
             "conclusion": predisposition_academique_target
         }
         
-        SF7.ajouter_regle(rule)
+        SF6.ajouter_regle(rule)
         
-#FIN SF7
+#FIN SF6
 
 
 
 
-#SF8
+#SF7
 #Entrees
 #predisposition academique
 
@@ -570,17 +570,17 @@ score_eleve_TB = trimf(x_score_eleve, [0.75, 1, 1])
 tab_score_eleve = [
     # predisposition academique
     #"TF"  "F"   "M"   "B"   "TB"
-    ['TF', 'TF', 'TF', 'TF', 'TF'],  # Niveau scolaire ajusté 'TF'
-    ['TF', 'TF', 'TF', 'F', 'F'],  # Niveau scolaire ajusté 'F'
-    ['TF', 'F', 'M', 'M', 'B'],  # Niveau scolaire ajusté 'M'
+    ['TF', 'TF', 'TF', 'F', 'M'],  # Niveau scolaire ajusté 'TF'
+    ['TF', 'TF', 'F', 'M', 'B'],  # Niveau scolaire ajusté 'F'
+    ['TF', 'F', 'M', 'B', 'B'],  # Niveau scolaire ajusté 'M'
     ['F', 'M', 'B', 'B', 'TB'],  # Niveau scolaire ajusté 'B'
     ['M', 'B', 'B', 'TB', 'TB'],  # Niveau scolaire ajusté 'TB'
 ]
 
-SF8 = SystemeFlou()
-SF8.ajouter_variable_entree("predisposition_academique", x_predisposition_academique, {"TF": predisposition_academique_TF, "F": predisposition_academique_F, "M": predisposition_academique_M, "B": predisposition_academique_B, "TB": predisposition_academique_TB})
-SF8.ajouter_variable_entree("niveau_scolaire_ajuste", x_niveau_scolaire_ajuste, {"TF": niveau_scolaire_ajuste_TF, "F": niveau_scolaire_ajuste_F, "M": niveau_scolaire_ajuste_M, "B": niveau_scolaire_ajuste_B, "TB": niveau_scolaire_ajuste_TB})
-SF8.ajouter_variable_sortie("score_eleve", x_score_eleve, {"TF": score_eleve_TF, "F": score_eleve_F, "M": score_eleve_M, "B": score_eleve_B, "TB": score_eleve_TB})
+SF7 = SystemeFlou()
+SF7.ajouter_variable_entree("predisposition_academique", x_predisposition_academique, {"TF": predisposition_academique_TF, "F": predisposition_academique_F, "M": predisposition_academique_M, "B": predisposition_academique_B, "TB": predisposition_academique_TB})
+SF7.ajouter_variable_entree("niveau_scolaire_ajuste", x_niveau_scolaire_ajuste, {"TF": niveau_scolaire_ajuste_TF, "F": niveau_scolaire_ajuste_F, "M": niveau_scolaire_ajuste_M, "B": niveau_scolaire_ajuste_B, "TB": niveau_scolaire_ajuste_TB})
+SF7.ajouter_variable_sortie("score_eleve", x_score_eleve, {"TF": score_eleve_TF, "F": score_eleve_F, "M": score_eleve_M, "B": score_eleve_B, "TB": score_eleve_TB})
 
 
 for x, niveau_scolaire_ajuste_label in enumerate(['TF', 'F', 'M', 'B', 'TB']):
@@ -597,19 +597,19 @@ for x, niveau_scolaire_ajuste_label in enumerate(['TF', 'F', 'M', 'B', 'TB']):
             "conclusion": score_eleve_target
         }
         
-        SF8.ajouter_regle(rule)
+        SF7.ajouter_regle(rule)
 
-#FIN SF8
+#FIN SF7
 
 
 systemes_flous_dico = {
-    'engagement': [SF2, x_engagement, [engagement_TF, engagement_F, engagement_M, engagement_B, engagement_E]],
-    'motivation': [SF3, x_motivation, [motivation_TF, motivation_F, motivation_M, motivation_B, motivation_TB]], 
-    'score_academique_global': [SF4, x_score_academique_global, [score_academique_global_TF, score_academique_global_F, score_academique_global_M, score_academique_global_B, score_academique_global_TB]],
-    'score_ajustement_lycee_classe': [SF5, x_score_ajustement_lycee_classe, [score_ajustement_lycee_classe_TF, score_ajustement_lycee_classe_F, score_ajustement_lycee_classe_M, score_ajustement_lycee_classe_B, score_ajustement_lycee_classe_TB]],
-    'niveau_scolaire_ajuste': [SF6, x_niveau_scolaire_ajuste, [niveau_scolaire_ajuste_TF, niveau_scolaire_ajuste_F, niveau_scolaire_ajuste_M, niveau_scolaire_ajuste_B, niveau_scolaire_ajuste_TB]],
-    'predisposition_academique': [SF7, x_predisposition_academique, [predisposition_academique_TF, predisposition_academique_F, predisposition_academique_M, predisposition_academique_B, predisposition_academique_TB]],
-    'score_eleve': [SF8, x_score_eleve, [score_eleve_TF, score_eleve_F, score_eleve_M, score_eleve_B, score_eleve_TB]]
+    'engagement': [SF1, x_engagement, [engagement_TF, engagement_F, engagement_M, engagement_B, engagement_E]],
+    'motivation': [SF2, x_motivation, [motivation_TF, motivation_F, motivation_M, motivation_B, motivation_TB]], 
+    'score_academique_global': [SF3, x_score_academique_global, [score_academique_global_TF, score_academique_global_F, score_academique_global_M, score_academique_global_B, score_academique_global_TB]],
+    'score_ajustement_lycee_classe': [SF4, x_score_ajustement_lycee_classe, [score_ajustement_lycee_classe_TF, score_ajustement_lycee_classe_F, score_ajustement_lycee_classe_M, score_ajustement_lycee_classe_B, score_ajustement_lycee_classe_TB]],
+    'niveau_scolaire_ajuste': [SF5, x_niveau_scolaire_ajuste, [niveau_scolaire_ajuste_TF, niveau_scolaire_ajuste_F, niveau_scolaire_ajuste_M, niveau_scolaire_ajuste_B, niveau_scolaire_ajuste_TB]],
+    'predisposition_academique': [SF6, x_predisposition_academique, [predisposition_academique_TF, predisposition_academique_F, predisposition_academique_M, predisposition_academique_B, predisposition_academique_TB]],
+    'score_eleve': [SF7, x_score_eleve, [score_eleve_TF, score_eleve_F, score_eleve_M, score_eleve_B, score_eleve_TB]]
 }
 
 import pickle
