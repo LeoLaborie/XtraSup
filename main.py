@@ -2,21 +2,20 @@ import pickle
 from Systeme_flou import defuzzification, normalisation, NombreFlou
 with open('systemes_flous.pkl', 'rb') as f:
     systemes_flous = pickle.load(f)
-    #engagement, motivation, score_academique_global, score_ajustement_lycee_classe, niveau_scolaire_ajuste, predisposition_academique, score_eleve
 
 # Variables
-activites_sportives = 1           # compris entre 0 et 1
-activites_sociales = 1.5           # compris entre 0 et 1.5
-projet_personnel = 1.5          # compris entre 0 et 1.5
-appreciation_des_professeurs = 1  # compris entre 0 et 1
-potentiel_academique_percu = 1    # compris entre 0 et 1
-motivation_percue = NombreFlou(0.8)  # compris entre 0 et 1
+activites_sportives = 0      # compris entre 0 et 1
+activites_sociales = 0           # compris entre 0 et 1.5
+projet_personnel = 0        # compris entre 0 et 1.5
+appreciation_des_professeurs = 0.5  # compris entre 0 et 1
+potentiel_academique_percu = 0.3    # compris entre 0 et 1
+motivation_percue = NombreFlou(0.6)  # compris entre 0 et 1
 qualite_lettre_de_motivation = NombreFlou(0.7)    # compris entre 0 et 1
-resultat_scolaire = 0          # compris entre 0 et 20 (moyenne générale)
-niveau_scientifique = 17           # compris entre 0 et 20
-niveau_litteraire = 20           # compris entre 0 et 20
-niveau_lycee = 1                 # compris entre 0 et 1
-niveau_classe = 1                 # compris entre 0 et 1
+resultat_scolaire = 18          # compris entre 0 et 20 (moyenne générale)
+niveau_scientifique = 18        # compris entre 0 et 20
+niveau_litteraire = 17         # compris entre 0 et 20
+niveau_lycee = 0.7               # compris entre 0 et 1
+niveau_classe = 0.8               # compris entre 0 et 1
 classement_eleve = 1       # compris entre 0 et 1 (0 = bas, 1 = haut)
 
 
@@ -26,11 +25,12 @@ activites_extrascolaires = activites_sportives + activites_sociales + projet_per
 
 print(f"Output of CA1 - Activités Extrascolaires: {activites_extrascolaires}")
 
+activites_extrascolaires = activites_extrascolaires/4 # divise la valeur pour être entre 0 et 1
 # Compute SF1 (Engagement)
 # Set inputs for SF1
 valeur_entrees = {
     "potentiel_academique_percu": potentiel_academique_percu,
-    "activites_extrascolaires": activites_extrascolaires/4,  # Output from SF1
+    "activites_extrascolaires": activites_extrascolaires,  # Output from CA1
     "appreciation_des_professeurs": appreciation_des_professeurs
 }
 
@@ -39,7 +39,7 @@ valeur_fuzzifier = systemes_flous["engagement"][0].fuzzifier(valeur_entrees)
 engagement = systemes_flous["engagement"][0].compute(valeur_fuzzifier)
 print(f"Output of SF1 - Engagement: {engagement}")
 
-#normalisation
+#normalisation pour les prochains systemes flous 
 engagement = normalisation(engagement, systemes_flous["engagement"][1][-1])
 
 # Compute SF2 (Motivation

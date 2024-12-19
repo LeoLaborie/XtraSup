@@ -97,10 +97,10 @@ def defuzzification(fuzzy_dict, gamma=3):
     return numerateur / denominateur
 
 class NombreFlou:
-    def __init__(self, a, b, c):
-        self.a = a
+    def __init__(self, b, ecart = 0.1):
+        self.a = b-ecart
         self.b = b
-        self.c = c
+        self.c = b+ecart
 
 def calcul_point_intersection_de_droites(a1, b1, a2, b2):
     """
@@ -291,6 +291,5 @@ class SystemeFlou:
                     already_in = True
                     
             if not already_in:
-                # conclusions.append([round(degre_activation,4), regle["conclusion"]])
                 conclusions[regle["conclusion"]] = round(degre_activation, 4)
         return conclusions

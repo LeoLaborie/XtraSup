@@ -454,9 +454,9 @@ tab_niveau_scolaire_ajuste = [
     #"TF"  "F"   "M"   "B"   "TB"
     ['TF', 'TF', 'TF', 'F', 'M'],  # Score d'ajustement lycée-classe 'TF'
     ['TF', 'TF', 'F', 'M', 'B'],  # Score d'ajustement lycée-classe 'F'
-    ['TF', 'TF', 'F', 'M', 'TB'],  # Score d'ajustement lycée-classe 'M'
-    ['TF', 'F', 'B', 'B', 'TB'],  # Score d'ajustement lycée-classe 'B'
-    ['F', 'M', 'B', 'TB', 'TB'],  # Score d'ajustement lycée-classe 'TB'
+    ['TF', 'F', 'M', 'M', 'B'],  # Score d'ajustement lycée-classe 'M'
+    ['F', 'M', 'B', 'B', 'TB'],  # Score d'ajustement lycée-classe 'B'
+    ['M', 'B', 'TB', 'TB', 'TB'],  # Score d'ajustement lycée-classe 'TB'
 ]
 
 SF5 = SystemeFlou()
@@ -511,10 +511,10 @@ tab_predisposition_academique = [
     # Engagement
     #"TF"  "F"   "M"   "B"   "E"
     ['TF', 'TF', 'TF', 'F', 'M'],  # Motivation 'TF'
-    ['TF', 'TF', 'F', 'M', 'B'],  # Motivation 'F'
-    ['F', 'F', 'M', 'M', 'B'],  # Motivation 'M'
-    ['M', 'B', 'B', 'B', 'TB'],  # Motivation 'B'
-    ['B', 'B', 'B', 'TB', 'TB'],  # Motivation 'TB'
+    ['TF', 'TF', 'F', 'M', 'M'],  # Motivation 'F'
+    ['TF', 'F', 'M', 'M', 'B'],  # Motivation 'M'
+    ['F', 'M', 'M', 'B', 'TB'],  # Motivation 'B'
+    ['M', 'M', 'B', 'TB', 'TB'],  # Motivation 'TB'
 ]
 
 
